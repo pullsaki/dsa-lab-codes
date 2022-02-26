@@ -1,4 +1,5 @@
 .vscode/
+.DS_Store
 lab1/*
 lab2/*
 lab3/*
