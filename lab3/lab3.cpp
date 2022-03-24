@@ -5,20 +5,6 @@
 
 using namespace std;
 
-//* const
-//* insert
-//* remove
-//* replace
-//* clear
-//* isEmpty
-//* isFull
-//* gotoBeginning
-//* gotoEnd
-//* gotoNext
-//* gotoPrior
-//* getCursor
-//* showStructure
-
 template <typename DataType>
 class List {
     private:
@@ -161,12 +147,29 @@ void List<DataType>::showStructure() {
     } else {
         cout << "The number of elements in the list is " << numberOfElements << endl;
         for (int i = 0; i < numberOfElements; i++) {
-            cout << array[i] << endl;
+            cout << array[i] << " ";
         }
+        cout << endl;
     }
 }
 
-// void List<int>::uniqueify() {}
+template <typename DataType>
+void List<DataType>::uniqueify() {
+    gotoBeginning();
+
+    int size = numberOfElements;
+
+    for (int i = 0; i < numberOfElements; i++) {
+        int current = getCursor();
+        if (gotoNext()) {
+            int next = getCursor();
+            if (current == next) {
+                next++;
+                replace(next);
+            }
+        }
+    }
+}
 
 template <typename DataType>
 void List<DataType>::createPrefixSumArray() {
@@ -180,10 +183,6 @@ void List<DataType>::createPrefixSumArray() {
 
 template <typename DataType>
 int List<DataType>::subArraySum(int left, int right) {
-    // int ans = psa[left - 1];
-    // ans += (psa[right - 1] - psa[left]);
-    // // psa[right - 1] - psa[left - 1];
-    // return ans;
     return psa[right - 1] - psa[left - 2];
 }
 
@@ -246,12 +245,10 @@ int main() {
 
     // for (int i = 0; i < ans.size(); i++) cout << ans[i] << endl;
 
-    // TODO Task 2: 
+    // // TODO Task 2: Done
     // List<int> tempList(10);
     // for (int i = 0;i < 10;i++) tempList.insert(1);
-    // print elements before calling the function
     // tempList.showStructure();
-    // call the function and then print elements to compare
     // tempList.uniqueify();
     // tempList.showStructure();
 
