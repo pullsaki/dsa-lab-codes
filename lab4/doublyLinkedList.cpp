@@ -218,6 +218,9 @@ void DoublyLinkedList<DT>::insert(const DT &newDataItem) {
         cursor = head;
     } else {
         DoublyLinkedNode<DT> *new_node = new DoublyLinkedNode<DT>(newDataItem, cursor->next, cursor);
+        if (cursor->next != NULL) {
+            cursor->next->prev = new_node;
+        }
         cursor->next = new_node;
         cursor = cursor->next;
     }
